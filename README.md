@@ -1,7 +1,7 @@
 ego
 ===
 
-A CPU scheduling simulator for Intro to OS. It is the ego, keeping the balance between two extremes -- the superego and the id.
+A CPU scheduling simulator for Intro to OS. It is the ego, keeping balance between two extremes -- betwee superego and id.
 
 Authors:
 * Jake Harris (jake at auburn: jch0039, javakat: javakatdesign@gmail.com)
