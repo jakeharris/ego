@@ -17,7 +17,14 @@ Table of Contents
 
 To-do List
 ----------
-
+* Submit initial designs
+* Develop main (the full simulator) skeleton -- should only create processes and call the scheduler at this stage
+* Develop the trace reader
+* Develop the queue data structure
+CHECKPOINT -- you've earned a cookie! But this is only MAYBE a quarter of the work.
+* Develop scheduler module
+* Develop scheduling algorithm sub-modules
+* Develop the clock and data collection sub-modules of main
 
 Design
 ------
