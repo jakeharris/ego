@@ -56,8 +56,8 @@ Each node in the queue is a job/process, and should contain:
   * A pointer to the node ahead of this one. A head of a list should have a NULL pointer here.
   * CommandName: the name of the command to run (presumably with execvp). Since we're going to use an exec-family function, this variable should be a 'char\*' to make this easier on us.
   * StartTime: the start time, relative to the scrivener's clock, in ms, of this process. This is read from the file, and is NOT updated when we launch this process in the simulacrum. It just tells us when to INITIALLY launch the process.
-  * CPUTime: the amount of time, in s (NOTE: NOT MS, LIKE STARTTIME), that this process consumes in the processor.
-  * IOCount: the total number of bytes of disk I/O. Disk I/O always occurs in full blocks, and blocks are 8KB (8192 bytes). Therefore, if I understand this right, all IOCount values should be multiples of 8KB. Maybe we can use that to our advantage to make it more human readable...Either way, DISK I/O is the only kind of I/O we care about in this project.
+  * CPUTime: the amount of time, in s (**Note: not ms, like StartTime is**), that this process consumes in the processor.
+  * IOCount: the total number of bytes of disk I/O. Disk I/O always occurs in full blocks, and blocks are 8KB (8192 bytes). Therefore, if I understand this right, all IOCount values should be multiples of 8KB. Maybe we can use that to our advantage to make it more human readable...Either way, **disk** I/O is the only kind of I/O we care about in this project.
 
 The queue should have a pointer to the head of the list, and a way to traverse the list. Sorting details should be handled by the scheduler, but should use methods that the queue provides.
 
