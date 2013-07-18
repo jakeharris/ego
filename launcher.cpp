@@ -1,0 +1,5 @@
+namespace ego {
+  class Launcher {
+
+  };
+}
