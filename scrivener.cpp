@@ -1,3 +1,5 @@
+#include "enums.cpp"
+
 namespace ego {
   class Scrivener {	
     SchedulerType alg;
