@@ -55,7 +55,7 @@ void simulate(Scheduler s) {
       rq.getHead().block();
     }
     if (wq.getHead().isReady()) {
-      rq.push(wq.pop());
+      rq.addToFront(wq.pop());
     }
   }
 } 
