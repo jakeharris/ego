@@ -1,9 +1,13 @@
+#include "queue.cpp"
+#include "enums.h"
+
 namespace ego {
   class Scheduler {
-
+    bool active;
     SchedulerType st;
     public: 
     Scheduler(SchedulerType type) {
+      active = false;
       st = type;
     }
     
@@ -36,6 +40,12 @@ namespace ego {
     
     void stfcpsort(Queue *q) {
     
+    }
+    void activate() {
+      active = true;
+    }
+    bool isActive() {
+      return active;
     }
   };
 }
