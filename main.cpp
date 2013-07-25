@@ -2,7 +2,8 @@
 
 using namespace ego; //pretty egotistical, right?!
 
-Queue q;
+Queue wq; /* waiting queue -- these processes haven't started yet -- HEAD is the next process to launch */
+Queue rq; /* ready queue -- these processes have started -- HEAD is the active process */
 Scheduler sa;
 Scheduler sb;
 Launcher l;
@@ -13,7 +14,6 @@ const string FILENAME = "trace.txt";
 void simulate(Scheduler s);
 
 int main() {
-  q = new Queue(FILENAME);
   sa = new Scheduler(SchedulerType.EXPONENTIAL);
   sb = new Scheduler(SchedulerType.STCFP);
   l = new Launcher();
@@ -30,6 +30,8 @@ int main() {
 }
 
 void simulate(Scheduler s){
+  wq = new Queue(FILENAME);
+  rq = new Queue;
   s.activate();
   while(s.isActive()){
     /* See page 2 of the project handout to determine what to do in this loop. */
