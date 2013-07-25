@@ -1,5 +1,5 @@
-#ifndef EGO_H
-#define EGO_H
+#ifndef ENUMS_H
+#define ENUMS_H
 
 namespace ego {
   enum ProcessState {

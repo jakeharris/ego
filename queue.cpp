@@ -1,8 +1,10 @@
+#include "helpers.h"
 #include "node.cpp"
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
+
+#include <stdlib.h>     /* atol */
 
 namespace ego {
   class Queue {
@@ -27,7 +29,9 @@ namespace ego {
                if (!line.empty()) line += " " + s;
                else line = s;
           }
-          std::cout << line << std::endl;
+          std::vector<std::string> x = split(line, ' ');
+          Node *n = new Node(x[0], atol(x[1].c_str()), atol(x[2].c_str()), atol(x[3].c_str()));
+          push(n);
         }
         f.close();
       }
@@ -86,6 +90,7 @@ namespace ego {
         if(current->next == NULL) return *(new Node("error", 0, 0, 0));
         current = current->next;
       }
+      return *head; // FIXME
     }
     void toString() {
       Node *current = head;
@@ -97,9 +102,6 @@ namespace ego {
         if (current->next == NULL) return;
         current = current->next;
       }
-    }
-    Node findByName(std::string name) {
-      return *head;
     }
   };
 }
