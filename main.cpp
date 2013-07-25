@@ -41,20 +41,20 @@ void simulate(Scheduler s) {
     rq.getHead().tick(); /* keeps track of time spent running (does not count waiting for IO) */
     if (rq.getHead().isComplete()) {
       rq.getHead().setFinishTime(scriv.clockTime());
-      rq.getHead().pop();
+      rq.pop();
     }
     if (!ioq.getHead().isComplete()) {
       ioq.getHead().tick();
     }
     else {
-      rq.findByName(ioq.pop().name()).unblock();
+      rq.findByName(ioq.pop().getName()).unblock();
       ioq.getHead().tick();
     }
     if (rq.getHead().needsIO()) {
       ioq.push(rq.getHead().name());
       rq.getHead().block();
     }
-    if (wq.getHead().isReady()) {
+    if (wq.getHead().isReady(scriv.clockTime())) {
       rq.addToFront(wq.pop());
     }
   }

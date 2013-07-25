@@ -4,11 +4,15 @@
 namespace ego {
   class Node {
     std::string commandName;
-    int startTime;
-    int cpuTime;
-    int ioCount;
+    long int startTime;
+    long int cpuTime;
+    long int ioCount;
 
-    int runTime;
+    long int runTime;
+    long int finishTime;
+
+    bool isBlocked;
+
     public:
     Node *next;
 
@@ -17,10 +21,44 @@ namespace ego {
       startTime = st;
       cpuTime = ct;
       ioCount = ic;
+ 
+      runTime = 0;
+      finishTime = 0;
+
+      isBlocked = false;
     }
 
     void tick() {
       runTime++;
+    }
+
+    void setFinishTime(long int ft) {
+      finishTime = ft;
+    }
+
+    void block() {
+      isBlocked = true;
+    }
+
+
+    void unblock() {
+      isBlocked = false;
+    }
+
+    std::string getName() {
+      return commandName;
+    }
+
+    bool isComplete() {
+      return runTime >= cpuTime;
+    }
+
+    bool needsIO() {
+      return false;
+    }
+
+    bool isReady(long int currentTime) {
+      return startTime >= currentTime;
     }
 
     void toString() {

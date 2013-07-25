@@ -19,7 +19,7 @@ int main() {
   q->push(p);
   q->toString();
   std::cout << std::endl << std::endl;
-  q->pop().toString();
+  std::cout << q->pop().getName() << std::endl;
   std::cout << std::endl << std::endl;
   q->toString();
 }
