@@ -55,5 +55,11 @@ namespace ego {
       throughput = 0;
       util = 0;
     }
+
+    void printData(){
+      calAct();
+      calThroughput();
+      calUtil();
+    }
   }
 }
