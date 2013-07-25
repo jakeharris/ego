@@ -17,24 +17,19 @@ namespace ego {
         return clock2;
     }
 
-    long int calRunTime() {//possibly take in node and use get functions to get vars
-      long int diff = compTime - arrTime;//for each process (figure this out)
-      return diff;
-    }
-
     long double calAct() {
-      act = calRunTime() / numJobs;//call or make it a global variable?
+      act = runTime / numJobs;//get runtime from node
       return act;
     }
 
-    long double calThroughput() {//possibly take in node and use get functions to get vars
-      throughput = numJobs / calRunTime();//function call or make it a global variable?, per second so divide time by 1k?
+    long double calThroughput() {//get info from node
+      throughput = numJobs / runTime;//per second so divide time by 1k?
       return throughput;
     }
 
     long int calUtil() {
       long double scale = 100.01;
-      util = (useTime / runTime)*scale;//display as percentage and round to nearest hundredth
+      util = (useTime / runTime)*scale;//display as percentage and round to nearest hundredth, figure out how to get use time. possibly count everytime it's pushed?
       return util;
     }
 
@@ -54,6 +49,12 @@ namespace ego {
       act = 0;
       throughput = 0;
       util = 0;
+    }
+
+    void report(){
+      calAct();
+      calThroughput();
+      calUtil();
     }
   }
 }
