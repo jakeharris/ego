@@ -3,10 +3,11 @@
 
 namespace ego {
   class Scheduler {
-    bool active = false;
+    bool active;
     SchedulerType st;
     public: 
     Scheduler(SchedulerType type) {
+      active = false;
       st = type;
     }
     
