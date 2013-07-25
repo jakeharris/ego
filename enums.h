@@ -1,3 +1,6 @@
+#ifndef EGO_H
+#define EGO_H
+
 namespace ego {
   enum ProcessState {
     RUNNING, START_IO, COMPLETE_IO, NEW_PROCESS
@@ -6,3 +9,5 @@ namespace ego {
     EXPONENTIAL, STFCP
   };
 }
+
+#endif
