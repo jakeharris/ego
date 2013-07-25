@@ -25,9 +25,9 @@ namespace ego {
     void expsort(Queue *q) {
         long int timesliceusage;//get this somehow
         //check for new job
-        Node * head = q -> getHead();
+        Node head = q -> getHead();
         long int priority = head.getPriority();
-        q.pop();
+        q->pop();
         long int timeSlice = (2^(priority - 1)) * 10;
         if ((timesliceusage < (timeSlice / 2) && priority != 1)) {
           priority--;
@@ -35,7 +35,7 @@ namespace ego {
         else if ((timesliceusage == timeSlice) && priority != 8) {
           priority++;
         }
-        q.push(head);
+        q->push(*head);
     }
     
     void stfcpsort(Queue *q) {
