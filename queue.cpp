@@ -57,6 +57,14 @@ namespace ego {
     Node getHead() {
       return *head;
     } 
+    Node findByName(std::string n) {
+      Node *current = head;
+      while(current) {
+        if(current->getName() == n) return *current;
+        if(current->next == NULL) return *(new Node("error", 0, 0, 0));
+        current = current->next;
+      }
+    }
     void toString() {
       Node *current = head;
       std::cout << "QUEUE CONTENTS:" << std::endl;
