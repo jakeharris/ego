@@ -26,6 +26,10 @@ namespace ego {
         current = current->next;
       }
     }
+    void push(std::string cmd) {
+      Node *n = new Node(cmd, 0, 0, 0);
+      push(n);
+    }
     Node pop() {
       Node *tail = head;
       if(tail->next == NULL) {
@@ -49,6 +53,9 @@ namespace ego {
     void addToFront(Node *n) {
       n->next = head;
       head = n;
+    }
+    Node getHead() {
+      return *head;
     } 
     void toString() {
       Node *current = head;

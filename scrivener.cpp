@@ -1,5 +1,6 @@
 #include "enums.cpp"
 
+
 namespace ego {
   class Scrivener {	
     SchedulerType alg;
@@ -11,6 +12,7 @@ namespace ego {
     long double throughput; //Jobs per second
     long double util; //time doing useful stuffs
     
+    public:
     Scrivener() {
       clock = 0;
       clock2 = 0;
@@ -49,7 +51,7 @@ namespace ego {
       numJobs++;
     }
 		
-    void iterRunTime() { //iterates the runtime counter
+    void tick() { //iterates the runtime counter
       runTime++;
     }
 
