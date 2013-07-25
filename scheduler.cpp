@@ -1,3 +1,6 @@
+#include "enums.cpp"
+#include "queue.cpp"
+
 namespace ego {
   class Scheduler {
 
