@@ -1,22 +1,29 @@
 namespace ego {
   class Scheduler {
 
-    SchedulingAlgorithm alg;
-
+    SchedulerType st;
     public: 
     Scheduler(SchedulerType type) {
-      switch(type) {
-        case SchedulerType.EXPONENTIAL:
-          alg = new ExponentialAlgorithm();
+      st = type;
+    }
+    
+    void sort(Queue *q) {
+      switch(st){
+        case ego::EXPONENTIAL:
+          expsort(q);
           break;
-        case SchedulerType.STCFP:
-          alg = new STCFPAlgorithm();
-          break;
-        default:
-          cout << "ERROR: Scheduler algorithm failed to initialize.\nInput value: " << type << "\nLegal values: " << SchedulerType.EXPONENTIAL << ", " << SchedulerType.STCFP << "\n";
+        case ego::STFCP:
+          stfcpsort(q);
           break;
       }
     }
 
+    void expsort(Queue *q) {
+    
+    }
+    
+    void stfcpsort(Queue *q) {
+    
+    }
   };
 }
