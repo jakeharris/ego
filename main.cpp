@@ -8,7 +8,7 @@ Queue * rq; /* ready queue -- these processes have started -- HEAD is the active
 Queue * ioq; /* IO job queue -- these are operations requested by processes */
 Scrivener * scriv;
 
-const std::string FILENAME = "trace.txt";
+const std::string FILENAME = "Project 3 Tracefile";
 
 void simulate(Scheduler *s);
 

@@ -1,5 +1,9 @@
 #include "node.cpp"
 
+#include <iostream>
+#include <fstream>
+#include <sstream>
+
 namespace ego {
   class Queue {
     Node *head;
@@ -8,8 +12,26 @@ namespace ego {
     Queue () {
       
     }
+    
     Queue (std::string filename) {
-      /* Open 'filename' and add the trace elements to the list. */ 
+      /* Open 'filename' and add the trace elements to the list. */
+      std::string line;
+      std::ifstream f (filename);
+      if (f.is_open()) {
+        while (f.good()) {
+          getline(f, line);
+          std::istringstream iss(line);
+          line = "";
+          std::string s;
+          while(iss >> s){
+               if (!line.empty()) line += " " + s;
+               else line = s;
+          }
+          std::cout << line << std::endl;
+        }
+        f.close();
+      }
+      else std::cout << "Unable to open file\n";
     }
 
     void push(Node *n) {
@@ -75,6 +97,9 @@ namespace ego {
         if (current->next == NULL) return;
         current = current->next;
       }
+    }
+    Node findByName(std::string name) {
+      return *head;
     }
   };
 }
