@@ -51,7 +51,7 @@ namespace ego {
       util = 0;
     }
 
-    void printData(){
+    void report(){
       calAct();
       calThroughput();
       calUtil();
