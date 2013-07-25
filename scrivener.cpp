@@ -1,3 +1,5 @@
+#include "enums.cpp"
+
 namespace ego {
   class Scrivener {	
     SchedulerType alg;
@@ -20,7 +22,7 @@ namespace ego {
     }
 
     long int clockTime() {
-      if (alg == SchedulerType.EXPONENTIAL) {
+      if (alg == ego::EXPONENTIAL) {
         return clock;
     }
         return clock2;
@@ -38,7 +40,7 @@ namespace ego {
 
     long int calUtil() {
       long double scale = 100.01;
-      util = (useTime / runTime)*scale;//display as percentage and round to nearest hundredth, figure out how to get use time. possibly count everytime it's pushed?
+      util = (useTime / runTime) * scale; //display as percentage and round to nearest hundredth, figure out how to get use time. possibly count everytime it's pushed?
       return util;
     }
 

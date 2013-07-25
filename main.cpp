@@ -1,13 +1,13 @@
-
+#include "queue.cpp"
+#include "scheduler.cpp"
 
 using namespace ego; //pretty egotistical, right?!
 
 Queue wq; /* waiting queue -- these processes haven't started yet -- HEAD is the next process to launch */
 Queue rq; /* ready queue -- these processes have started -- HEAD is the active process */
-IOQueue ioq; /* IO job queue -- these are operations requested by processes */
+Queue ioq; /* IO job queue -- these are operations requested by processes */
 Scheduler sa;
 Scheduler sb;
-Launcher l;
 Scrivener scriv;
 
 const string FILENAME = "trace.txt";
@@ -17,7 +17,6 @@ void simulate(Scheduler s);
 int main() {
   sa = new Scheduler(SchedulerType.EXPONENTIAL);
   sb = new Scheduler(SchedulerType.STCFP);
-  l = new Launcher();
   scriv = new Scrivener();
 
   scriv.setup();
@@ -33,7 +32,7 @@ int main() {
 void simulate(Scheduler s) {
   wq = new Queue(FILENAME);
   rq = new Queue();
-  ioq = new IOQueue();
+  ioq = new Queue();
   s.activate();
   while(s.isActive()){
     s.sort(rq);
