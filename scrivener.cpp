@@ -1,14 +1,23 @@
 namespace ego {
   class Scrivener {	
     SchedulerType alg;
-    long int clock = 0; //clock of alg 1
-    long int clock2 = 0; //for lackof a better name, clock of alg 2
-    long int runTime = 0;
-    long int numJobs = 0;
-    long double act = 0; //Average Completion Time
-    long double throughput = 0; //Jobs per second
-    long double util = 0; //time doing useful stuffs
+    long int clock; //clock of alg 1
+    long int clock2; //for lackof a better name, clock of alg 2
+    long int runTime;
+    long int numJobs;
+    long double act; //Average Completion Time
+    long double throughput; //Jobs per second
+    long double util; //time doing useful stuffs
     
+    Scrivener() {
+      clock = 0;
+      clock2 = 0;
+      runTime = 0;
+      numJobs = 0;
+      act = 0;
+      throughput = 0;
+      util = 0;
+    }
 
     long int clockTime() {
       if (alg == SchedulerType.EXPONENTIAL) {
