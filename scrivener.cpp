@@ -1,4 +1,4 @@
-#include "enums.cpp"
+#include "enums.h"
 
 
 namespace ego {

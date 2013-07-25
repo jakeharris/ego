@@ -1,5 +1,5 @@
 #include "queue.cpp"
-#include "enums.cpp"
+#include "enums.h"
 
 namespace ego {
   class Scheduler {

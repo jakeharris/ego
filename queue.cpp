@@ -50,9 +50,9 @@ namespace ego {
       Node *err = new Node("error", 0, 0, 0);
       return *err;
     }
-    void addToFront(Node *n) {
-      n->next = head;
-      head = n;
+    void addToFront(Node n) {
+      n.next = head;
+      head = &n;
     }
     Node getHead() {
       return *head;
