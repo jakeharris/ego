@@ -11,7 +11,7 @@ namespace ego {
     long double act; //Average Completion Time
     long double throughput; //Jobs per second
     long double util; //utilization
-	long int use; //time doing usefull stuff
+    long int use; //time doing usefull stuff
     
     public:
     Scrivener() {
@@ -55,9 +55,9 @@ namespace ego {
       runTime++;
     }
 	
-	void usageTime() { //iterates the time the process is actually used.
-		use++;
-	}
+    void usageTime() { //iterates the time the process is actually used.
+      use++;
+    }
 
     void initialize() {
       clock = 0;

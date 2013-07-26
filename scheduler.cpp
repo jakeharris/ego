@@ -38,7 +38,7 @@ namespace ego {
           priority++;
         }
         q->push(head);
-		//}
+        //}
     }
     
     void stfcpsort(Queue *q) {
