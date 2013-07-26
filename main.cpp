@@ -59,7 +59,7 @@ void simulate(Scheduler *s) {
       std::cout << ioq->getHead().getName() << " Uh huh." << std::endl;
       if (ioq->hasHead()) {
         std::string name = ioq->pop()->getName();
-        rq->findByName(name)->unblock();
+        rq->findByName(name).unblock();
         std::cout << "Slightly larger kitties.\n";
         ioq->getHead().tick();
         std::cout << "Lukewarm apple cider.\n";
