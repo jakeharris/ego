@@ -42,29 +42,38 @@ void simulate(Scheduler *s) {
     std::cout << "scriv ticked" << std::endl;
     if(rq->hasHead()) {
       std::cout << "has head" << std::endl;
-      rq->getHead()->tick(); /* keeps track of time spent running (does not count waiting for IO) */
-    }
+      rq->getHead().tick(); /* keeps track of time spent running (does not count waiting for IO) */
+    } else { continue; }
     std::cout << "head ticked" << std::endl;
-    if (rq->getHead().isComplete()) {
+    if (rq->hasHead() && rq->getHead().isComplete()) {
       std::cout << "head is complete" << std::endl;
       rq->getHead().setFinishTime(scriv->clockTime());
       rq->pop();
     }
-    if (!ioq->getHead().isComplete()) {
+    if (ioq->hasHead() && !ioq->getHead().isComplete()) {
       std::cout << "io head is complete" << std::endl;
       ioq->getHead().tick();
     }
     else {
       std::cout << "io head is not complete" << std::endl;
-      rq->findByName(ioq->pop().getName()).unblock();
-      ioq->getHead().tick();
+      std::cout << ioq->getHead().getName() << " Uh huh." << std::endl;
+      std::string name = ioq->pop()->getName();
+      if (ioq->hasHead()) {
+        rq->findByName(name).unblock();
+        std::cout << "Slightly larger kitties.\n";
+        ioq->getHead().tick();
+        std::cout << "Lukewarm apple cider.\n";
+      }
     }
-    if (rq->getHead().needsIO()) {
+    std::cout << "Speaking of which, \n";
+    if (rq->hasHead() && rq->getHead().needsIO()) {
       std::cout << "head needs io" << std::endl;
+      std::cout << "POW POW POW POW POW POW POW POW POW (LCD SOUNDSYSTEM)\n";
       ioq->push(rq->getHead().getName());
+      std::cout << "Playing GameBoy Advanced with my bros." << std::endl;
       rq->getHead().block();
     }
-    if (wq->getHead().isReady(scriv->clockTime())) {
+    if (wq->hasHead() && wq->getHead().isReady(scriv->clockTime())) {
       std::cout << "waiting job needs starting" << std::endl;
       rq->addToFront(wq->pop());
     }

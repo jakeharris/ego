@@ -12,7 +12,7 @@ namespace ego {
 
     public:
     Queue () {
-      
+      head = new Node("H", 0, 0, 0);
     }
     
     Queue (std::string filename) {
@@ -59,41 +59,44 @@ namespace ego {
       Node *n = new Node(cmd, 0, 0, 0);
       push(n);
     }
-    Node pop() {
+    Node* pop() {
       Node *tail = head;
       if(tail->next == NULL) {
         head = NULL;
-        return *tail;
+        return tail;
       }
       tail = tail->next;
       Node *newtail = head;
       while(tail) {
         if(tail->next == NULL) {
           newtail->next = NULL;
-          return *tail;
+          return tail;
         }
         tail = tail->next;
         newtail = newtail->next;
       }
       std::cerr << "Never found a node in queue." << std::endl;
       Node *err = new Node("error", 0, 0, 0);
-      return *err;
+      return err;
     }
-    void addToFront(Node n) {
-      n.next = head;
-      head = &n;
+    void addToFront(Node * n) {
+      n->next = head;
+      head = n;
     }
     Node getHead() {
       return *head;
     } 
     Node findByName(std::string n) {
-      Node *current = head;
-      while(current) {
-        if(current->getName() == n) return *current;
-        if(current->next == NULL) return *(new Node("error", 0, 0, 0));
-        current = current->next;
-      }
-      return *head; // FIXME
+      std::cout << "Haven't slept in a year." << n << std::endl;
+      Node current = *head;
+      std::cout << "Have you ever eaten a snowcone?" << head->getName() << std::endl;      
+      std::cout << "Have you ever eaten a snowcone?" << current.getName() << std::endl;
+//      while(current) {
+//        if(current.getName() == n) return current;
+//        if(current.next == NULL) return new Node("error", 0, 0, 0);
+//        current = current.next;
+//      }
+      return current;
     }
     void toString() {
       Node *current = head;
