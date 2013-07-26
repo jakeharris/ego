@@ -7,6 +7,7 @@ Authors:
 * Jake Harris (jake at auburn: jch0039, javakat: javakatdesign@gmail.com)
 * Clay Miller (clay at auburn: cdm0025, smockle: clay@smockle.com)
 * Patrick Fleming (patrick at auburn: jpf0005, splice09)
+* Zachary White (zach at auburn: zdw0001, auzatch)
 
 
 Table of Contents
