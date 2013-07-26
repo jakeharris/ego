@@ -1,4 +1,4 @@
-#include "helpers.h"
+#include "helpers.cpp"
 #include "node.cpp"
 
 #include <iostream>
@@ -17,11 +17,11 @@ namespace ego {
     
     Queue (std::string filename) {
       /* Open 'filename' and add the trace elements to the list. */
+      Helpers h;
       std::string line;
-      std::ifstream f (filename);
+      std::ifstream f(filename.c_str());
       if (f.is_open()) {
-        while (f.good()) {
-          getline(f, line);
+        while (getline(f, line)) {
           std::istringstream iss(line);
           line = "";
           std::string s;
@@ -29,7 +29,7 @@ namespace ego {
                if (!line.empty()) line += " " + s;
                else line = s;
           }
-          std::vector<std::string> x = split(line, ' ');
+          std::vector<std::string> x = h.separate(line, ' ');
           Node *n = new Node(x[0], atol(x[1].c_str()), atol(x[2].c_str()), atol(x[3].c_str()));
           push(n);
         }
@@ -37,7 +37,10 @@ namespace ego {
       }
       else std::cout << "Unable to open file\n";
     }
-
+    bool hasHead() {
+      std::cout << "head: " << head << std::endl;
+      return head != NULL;
+    }
     void push(Node *n) {
       if(head == NULL) {
         head = n;

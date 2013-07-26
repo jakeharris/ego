@@ -35,7 +35,7 @@ namespace ego {
         else if ((timesliceusage == timeSlice) && priority != 8) {
           priority++;
         }
-        q->push(*head);
+        q->push(&head);
     }
     
     void stfcpsort(Queue *q) {
