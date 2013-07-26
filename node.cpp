@@ -81,5 +81,15 @@ namespace ego {
       std::cout << "CPU time: " << cpuTime << std::endl;
       std::cout << "IO count: " << ioCount << std::endl;
     }
+    
+    int getExpectedRunTime() {
+      // FIXME
+      return 0;
+    }
+    
+    int getProcessRunTime() {
+      // FIXME
+      return 0;
+    }
   };
 }
