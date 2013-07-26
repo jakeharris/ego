@@ -86,11 +86,15 @@ namespace ego {
     Node getHead() {
       return *head;
     } 
-    Node findByName(std::string n) {
+    Node* findByName(std::string n) {
       std::cout << "Haven't slept in a year." << n << std::endl;
-      Node current = *head;
+      Node *current = new Node("F", 0, 0, 0);
+      if (hasHead()) {
+        std::cout << "Target acquired.\n";
+        *current = getHead();
+      }
       std::cout << "Have you ever eaten a snowcone?" << head->getName() << std::endl;      
-      std::cout << "Have you ever eaten a snowcone?" << current.getName() << std::endl;
+      std::cout << "Have you ever eaten a snowcone?" << current->getName() << std::endl;
 //      while(current) {
 //        if(current.getName() == n) return current;
 //        if(current.next == NULL) return new Node("error", 0, 0, 0);

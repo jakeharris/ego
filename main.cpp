@@ -57,9 +57,9 @@ void simulate(Scheduler *s) {
     else {
       std::cout << "io head is not complete" << std::endl;
       std::cout << ioq->getHead().getName() << " Uh huh." << std::endl;
-      std::string name = ioq->pop()->getName();
       if (ioq->hasHead()) {
-        rq->findByName(name).unblock();
+        std::string name = ioq->pop()->getName();
+        rq->findByName(name)->unblock();
         std::cout << "Slightly larger kitties.\n";
         ioq->getHead().tick();
         std::cout << "Lukewarm apple cider.\n";
