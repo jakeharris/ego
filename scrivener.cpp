@@ -1,4 +1,5 @@
-#include "enums.cpp"
+#include "enums.h"
+
 
 namespace ego {
   class Scrivener {	
@@ -11,6 +12,7 @@ namespace ego {
     long double throughput; //Jobs per second
     long double util; //time doing useful stuffs
     
+    public:
     Scrivener() {
       clock = 0;
       clock2 = 0;
@@ -40,6 +42,7 @@ namespace ego {
 
     long int calUtil() {
       long double scale = 100.01;
+      long int useTime = 1; // FIXME
       util = (useTime / runTime) * scale; //display as percentage and round to nearest hundredth, figure out how to get use time. possibly count everytime it's pushed?
       return util;
     }
@@ -48,7 +51,7 @@ namespace ego {
       numJobs++;
     }
 		
-    void iterRunTime() { //iterates the runtime counter
+    void tick() { //iterates the runtime counter
       runTime++;
     }
 
@@ -67,5 +70,5 @@ namespace ego {
       calThroughput();
       calUtil();
     }
-  }
+  };
 }

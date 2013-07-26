@@ -11,6 +11,8 @@ namespace ego {
     long int runTime;
     long int finishTime;
 
+    int priority;
+
     bool isBlocked;
 
     public:
@@ -25,7 +27,10 @@ namespace ego {
       runTime = 0;
       finishTime = 0;
 
+      priority = 1;
+
       isBlocked = false;
+      next = 0;
     }
 
     void tick() {
@@ -48,6 +53,14 @@ namespace ego {
     std::string getName() {
       return commandName;
     }
+
+    void setPriority(int p) {
+      priority = p;
+    }
+
+    int getPriority() {
+      return priority;
+    } 
 
     bool isComplete() {
       return runTime >= cpuTime;
