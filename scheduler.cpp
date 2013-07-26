@@ -24,8 +24,8 @@ namespace ego {
 
     void expsort(Queue *q) {
         long int timesliceusage = 1;//get this somehow
-        //check for new job if (q.newJob){
-        //  q.moveToFront(head)
+        //check for new job, if (q.newJob()){
+        //  q.moveToFront(head);
         //}
         //else {
         Node head = q -> pop();
