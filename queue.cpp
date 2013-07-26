@@ -39,7 +39,7 @@ namespace ego {
     }
     bool hasHead() {
       std::cout << "head: " << head << std::endl;
-      return head != NULL;
+      return head != NULL && head->getName() != "H";
     }
     void push(Node *n) {
       if(head == NULL) {
@@ -91,11 +91,11 @@ namespace ego {
       Node current = *head;
       std::cout << "Have you ever eaten a snowcone?" << head->getName() << std::endl;      
       std::cout << "Have you ever eaten a snowcone?" << current.getName() << std::endl;
-//      while(current) {
-//        if(current.getName() == n) return current;
-//        if(current.next == NULL) return new Node("error", 0, 0, 0);
-//        current = current.next;
-//      }
+      while(&current) {
+        if(current.getName() == n) return current;
+        if(current.next == NULL) return *(new Node("error", 0, 0, 0));
+        current = *current.next;
+      }
       return current;
     }
     void toString() {
