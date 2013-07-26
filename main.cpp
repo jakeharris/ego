@@ -42,7 +42,7 @@ void simulate(Scheduler *s) {
     std::cout << "scriv ticked" << std::endl;
     if(rq->hasHead()) {
       std::cout << "has head" << std::endl;
-      rq->getHead()->tick(); /* keeps track of time spent running (does not count waiting for IO) */
+      rq->getHead().tick(); /* keeps track of time spent running (does not count waiting for IO) */
     }
     std::cout << "head ticked" << std::endl;
     if (rq->getHead().isComplete()) {
