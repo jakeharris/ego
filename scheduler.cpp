@@ -23,8 +23,8 @@ namespace ego {
     }
 
     void expsort(Queue *q) {
-        long int timesliceusage = 1;//get this somehow
-        //check for new job, if (q.newJob()){
+        long int timesliceusage = 1;//get this somehow. i guess this needs to be done outside of whatever loop this is in
+        //check for new job, if (q.newJob()){ or something similar
         //  q.moveToFront(head);
         //}
         //else {
@@ -38,6 +38,7 @@ namespace ego {
           priority++;
         }
         q->push(head);
+		//}
     }
     
     void stfcpsort(Queue *q) {
