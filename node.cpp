@@ -30,6 +30,7 @@ namespace ego {
       priority = 1;
 
       isBlocked = false;
+      next = 0;
     }
 
     void tick() {
