@@ -23,11 +23,13 @@ namespace ego {
     }
 
     void expsort(Queue *q) {
-        long int timesliceusage;//get this somehow
-        //check for new job
-        Node head = q -> getHead();
-        long int priority = head.getPriority();
-        q->pop();
+        long int timesliceusage = 1;//get this somehow
+        //check for new job if (q.newJob){
+        //  q.moveToFront(head)
+        //}
+        //else {
+        Node head = q -> pop();
+        long int priority = head.getPriority();        
         long int timeSlice = (2^(priority - 1)) * 10;
         if ((timesliceusage < (timeSlice / 2) && priority != 1)) {
           priority--;
