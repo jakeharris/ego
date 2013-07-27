@@ -85,6 +85,9 @@ namespace ego {
     void activate() {
       active = true;
     }
+    void deactivate(){
+      active = false;
+    }
     bool isActive() {
       return active;
     }
