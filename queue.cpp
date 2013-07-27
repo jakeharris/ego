@@ -16,7 +16,7 @@ namespace ego {
     int total_number_of_ticks;
     Queue () {
       head = new Node("H", 0, 0, 0);
-      number_of_processes;
+      number_of_processes = 0;
       total_number_of_ticks = 0;
     }
     
