@@ -18,6 +18,8 @@ int main() {
   scriv = new Scrivener();
 
   simulate(sa);
+  scriv->report();
+  scriv->initialize();
   simulate(sb);
   
   scriv->report();
