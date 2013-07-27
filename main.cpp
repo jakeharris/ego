@@ -91,7 +91,7 @@ void simulate(Scheduler *s) {
   s->activate();
   std::cout << "scheduler activated" << std::endl;
   std::cout << "BEGIN LOOP: " << std::endl;
-  while(s->isActive() && wq->total_number_of_ticks > 0){
+  while(s->isActive() && (wq->total_number_of_ticks > 0 && wq->total_number_of_ticks < 536626869)){
 
     std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
 
