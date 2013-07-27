@@ -1,4 +1,5 @@
 #include "enums.h"
+#include "node.cpp"
 
 #include <iostream>
 
