@@ -3,7 +3,7 @@
 
 using namespace ego; //pretty egotistical, right?!
 
-Queue * wq; /* waiting queue -- these processes haven't started yet -- HEAD is the next process to launch */
+//Queue * wq; /* waiting queue -- these processes haven't started yet -- HEAD is the next process to launch */
 Queue * rq; /* ready queue -- these processes have started -- HEAD is the active process */
 Queue * ioq; /* IO job queue -- these are operations requested by processes */
 Scrivener * scriv;
@@ -26,7 +26,7 @@ int main() {
 }
 
 void simulate(Scheduler *s) {
-  wq = new Queue(FILENAME);
+  Queue *wq = new Queue(FILENAME);
   scriv->setNumJobs(wq->number_of_processes);
   std::cout << "wq made" << std::endl;
   rq = new Queue();
