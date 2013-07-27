@@ -96,13 +96,17 @@ void simulate(Scheduler *s) {
     wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
 
     std::cout << "scriv ticked" << std::endl;
-    std::cout << "head ticked" << std::endl;
 
     if(rq->hasHead()) {
       std::cout << "has head" << std::endl;
       rq->getHead()->tick(); /* keeps track of time spent running (does not count waiting for IO) */
+      std::cout << "head ticked" << std::endl;
       wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
-    } else { startJob(rq, wq); continue; }
+    } 
+    else { 
+      startJob(rq, wq);
+      continue; 
+    }
     completeHead(rq, wq);
     ioComplete(ioq, rq, wq);
     handleIO(ioq, rq);

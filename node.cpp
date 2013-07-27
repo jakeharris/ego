@@ -84,7 +84,7 @@ namespace ego {
     
     int getExpectedRunTime() {
       // FIXME
-      return 0;
+      return cpuTime;
     }
     
     int getProcessRunTime() {
