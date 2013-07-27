@@ -9,10 +9,12 @@
 namespace ego {
   class Queue {
     Node *head;
-
+    
     public:
+    int total_number_of_ticks;
     Queue () {
       head = new Node("H", 0, 0, 0);
+      total_number_of_ticks = 0;
     }
     
     Queue (std::string filename) {
@@ -31,6 +33,8 @@ namespace ego {
           }
           std::vector<std::string> x = h.separate(line, ' ');
           Node *n = new Node(x[0], atol(x[1].c_str()), atol(x[2].c_str()), atol(x[3].c_str()));
+//std::cout << x[0] << ", " << atol(x[1].c_str()) << ", " << atol(x[2].c_str()) << ", " << atol(x[3].c_str()) << std::endl;
+          total_number_of_ticks = total_number_of_ticks + atol(x[2].c_str());
           push(n);
         }
         f.close();
@@ -39,7 +43,7 @@ namespace ego {
     }
     bool hasHead() {
       std::cout << "head: " << head << std::endl;
-      return head != NULL && head->getName() != "H";
+      return head != NULL && std::strcmp(head->getName().c_str(), "H") != 0;
     }
     void push(Node *n) {
       if(head == NULL) {
@@ -54,10 +58,6 @@ namespace ego {
         }
         current = current->next;
       }
-    }
-    void push(std::string cmd) {
-      Node *n = new Node(cmd, 0, 0, 0);
-      push(n);
     }
     Node* pop() {
       Node *tail = head;
@@ -83,8 +83,8 @@ namespace ego {
       n->next = head;
       head = n;
     }
-    Node getHead() {
-      return *head;
+    Node* getHead() {
+      return head;
     } 
     Node findByName(std::string n) {
       std::cout << "Haven't slept in a year." << n << std::endl;

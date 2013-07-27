@@ -89,7 +89,7 @@ namespace ego {
     
     int getProcessRunTime() {
       // FIXME
-      return 0;
+      return runTime;
     }
   };
 }

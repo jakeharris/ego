@@ -23,30 +23,29 @@ namespace ego {
     }
 
     void expsort(Queue *q) {
-        long int timesliceusage = 1;//get this somehow. i guess this needs to be done outside of whatever loop this is in
-        //if (q.newNode()){ or something similar //checks for new job
+        //if (q.newNode()){  //checks for new job does main do this?
         //  q.addToFront(newNode);
         //}
         Node *head = q -> pop();
         long int priority = head->getPriority();        
         long int timeSlice = (2^(priority - 1)) * 10;
-        if ((timesliceusage < (timeSlice / 2) && priority != 1)) {
+        if ((head -> getProcessRunTime() < (timeSlice / 2) && priority != 1)) {
           priority--;
         }
-        else if ((timesliceusage == timeSlice) && priority != 8) {
+        else if ((head -> getProcessRunTime() == timeSlice) && priority != 8) {
           priority++;
         }
         q->push(head);
     }
     
     void stfcpsort(Queue *q) {
-      Node current = q->getHead();
+      Node * current = q->getHead();
       Node * temp = 0;
       bool sorted = false;
       bool switchMade;
       /*check if process has been finished before if so
         then place it at the end of the linked list */
-      if((current.getExpectedRunTime() - current.getProcessRunTime()) == 0){
+      if((current->getExpectedRunTime() - current->getProcessRunTime()) == 0){
         temp = q->pop();
         q->push(temp);
       }
@@ -57,22 +56,22 @@ namespace ego {
           //parse through the list with this loop
           while(&current){
             //return if at the end of the list
-            if(current.next == NULL) {
+            if(current->next == NULL) {
               return;
             }
-            temp = current.next;
+            temp = current->next;
             //return if at the items in the list that have already been run
             if((temp->getExpectedRunTime() - temp->getProcessRunTime()) == 0){
               return;
             }
             /*compare current with next to check which has a larger cpu burst time
               if current is larger then move temp to the front of the linked list. */
-            if((current.getExpectedRunTime() - current.getProcessRunTime()) > (temp->getExpectedRunTime() - temp->getProcessRunTime())){
-              current.next = temp->next;
+            if((current->getExpectedRunTime() - current->getProcessRunTime()) > (temp->getExpectedRunTime() - temp->getProcessRunTime())){
+              current->next = temp->next;
               q->addToFront(temp); 
               switchMade = true;
             }
-            current = *current.next;
+            current = current->next;
           }
           //loop exit condition
           if(switchMade == false){
