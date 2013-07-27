@@ -1,5 +1,5 @@
 #include "enums.h"
-#include "node.cpp"
+#include "node.h"
 
 #include <iostream>
 
@@ -68,7 +68,7 @@ namespace ego {
 
     void nodeInfo(Node *n) {
       finishTime = finishTime + n -> getFinishTime();
-      temp = n -> getProcessRunTime();
+      int temp = n -> getProcessRunTime();
 
       if(temp > max) max = temp;
       if(temp < min) min = temp;       

@@ -1,99 +1,84 @@
+#include "node.h"
+
 #include <string>
 #include <iostream>
 
-namespace ego {
-  class Node {
-    std::string commandName;
-    long int startTime;
-    long int cpuTime;
-    long int ioCount;
+using namespace ego;
 
-    long int runTime;
-    long int finishTime;
+Node::Node(std::string cn, long int st, long int ct, long int ic) {
+  commandName = cn;
+  startTime = st;
+  cpuTime = ct;
+  ioCount = ic;
 
-    int priority;
+  runTime = 0;
+  finishTime = 0;
 
-    bool isBlocked;
+  priority = 1;
 
-    public:
-    Node *next;
+  isBlocked = false;
+  next = 0;
+}
 
-    Node(std::string cn, long int st, long int ct, long int ic) {
-      commandName = cn;
-      startTime = st;
-      cpuTime = ct;
-      ioCount = ic;
- 
-      runTime = 0;
-      finishTime = 0;
+void Node::tick() {
+  runTime++;
+}
 
-      priority = 1;
+void Node::setFinishTime(long int ft) {
+  finishTime = ft;
+}
 
-      isBlocked = false;
-      next = 0;
-    }
-
-    void tick() {
-      runTime++;
-    }
-
-    void setFinishTime(long int ft) {
-      finishTime = ft;
-    }
-
-    void block() {
-      isBlocked = true;
-    }
+void Node::block() {
+  isBlocked = true;
+}
 
 
-    void unblock() {
-      isBlocked = false;
-    }
+void Node::unblock() {
+  isBlocked = false;
+}
 
-    std::string getName() {
-      return commandName;
-    }
+std::string Node::getName() {
+  return commandName;
+}
 
-    void setPriority(int p) {
-      priority = p;
-    }
+void Node::setPriority(int p) {
+  priority = p;
+}
 
-    int getPriority() {
-      return priority;
-    } 
+int Node::getPriority() {
+  return priority;
+} 
 
-    bool isComplete() {
-      return runTime >= cpuTime;
-    }
+bool Node::isComplete() {
+  return runTime >= cpuTime;
+}
 
-    bool needsIO() {
-      return false;
-    }
+bool Node::needsIO() {
+  return false;
+}
 
-    bool isReady(long int currentTime) {
-      return startTime >= currentTime;
-    }
+bool Node::isReady(long int currentTime) {
+  return startTime >= currentTime;
+}
 
-    void toString() {
-      std::cout << "NODE CONTENTS:" << std::endl;
-      std::cout << "Command: " << commandName << std::endl;
-      std::cout << "Start time: " << startTime << std::endl;
-      std::cout << "CPU time: " << cpuTime << std::endl;
-      std::cout << "IO count: " << ioCount << std::endl;
-    }
-    
-    int getExpectedRunTime() {
-      // FIXME
-      return 0;
-    }
+void Node::toString() {
+  std::cout << "NODE CONTENTS:" << std::endl;
+  std::cout << "Command: " << commandName << std::endl;
+  std::cout << "Start time: " << startTime << std::endl;
+  std::cout << "CPU time: " << cpuTime << std::endl;
+  std::cout << "IO count: " << ioCount << std::endl;
+}
 
-    int getFinishTime() {
-      return finishTime;
-    }
-    
-    int getProcessRunTime() {
-      // FIXME
-      return runTime;
-    }
-  };
+int Node::getExpectedRunTime() {
+  // FIXME
+  return 0;
+}
+
+int Node::getFinishTime() {
+  return finishTime;
+}
+
+int Node::getProcessRunTime() {
+  // FIXME
+  return runTime;
 }
