@@ -86,6 +86,10 @@ namespace ego {
       // FIXME
       return 0;
     }
+
+    int getFinishTime() {
+      return finishTime;
+    }
     
     int getProcessRunTime() {
       // FIXME
