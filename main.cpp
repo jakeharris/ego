@@ -79,9 +79,9 @@ void startJob (Queue * rq, Queue * wq) {
 }
 
 void simulate(Scheduler *s) {
-  std::cout << "ABBA" << std::endl;
+//  std::cout << "ABBA" << std::endl;
   Queue *wq = new Queue(FILENAME);
-  std::cout << "BAAB" << std::endl;
+//  std::cout << "BAAB" << std::endl;
   scriv->setNumJobs(wq->number_of_processes);
   std::cout << "wq made" << std::endl;
   Queue *rq = new Queue();
@@ -93,7 +93,7 @@ void simulate(Scheduler *s) {
   std::cout << "BEGIN LOOP: " << std::endl;
   while(s->isActive() && (wq->total_number_of_ticks > 0 && wq->total_number_of_ticks < 536626869)){
 
-    std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
+//    std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
 
     s->sort(rq);
 

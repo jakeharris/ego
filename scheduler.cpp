@@ -49,8 +49,8 @@ namespace ego {
       if((current->getExpectedRunTime() - current->getProcessRunTime()) == 0){
         temp = q->pop();
         q->push(temp);
-        std::cout << "The expected run time is: " << current->getExpectedRunTime() <<  std::endl;
-        std::cout << "The time proccess has run is: " << current->getProcessRunTime() << std::endl;
+//        std::cout << "The expected run time is: " << current->getExpectedRunTime() <<  std::endl;
+//        std::cout << "The time proccess has run is: " << current->getProcessRunTime() << std::endl;
       }
       else{
         //sort the linked list with this loop
