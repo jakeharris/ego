@@ -39,6 +39,7 @@ namespace ego {
     }
     
     void stfcpsort(Queue *q) {
+      //std::cout << "You are in stfcpsort" << std::endl;
       Node * current = q->getHead();
       Node * temp = 0;
       bool sorted = false;
