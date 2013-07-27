@@ -29,9 +29,9 @@ namespace ego {
     if (alg == ego::EXPONENTIAL) {
         clock = runTime;
         return clock;
-    }
-        clock2 = runTime;
-        return clock2;
+      }
+      clock2 = runTime;
+      return clock2;
     }
 
     long double calAct() {
