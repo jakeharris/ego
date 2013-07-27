@@ -86,17 +86,17 @@ void simulate(Scheduler *s) {
   std::cout << "BEGIN LOOP: " << std::endl;
   while(s->isActive() && wq->total_number_of_ticks > 0){
 
-    std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
+//    std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
 
     s->sort(rq);
 
-    std::cout << "rq is sorted" << std::endl;
+//    std::cout << "rq is sorted" << std::endl;
 
     scriv->tick();
     wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
 
-    std::cout << "scriv ticked" << std::endl;
-    std::cout << "head ticked" << std::endl;
+//    std::cout << "scriv ticked" << std::endl;
+//    std::cout << "head ticked" << std::endl;
 
     if(rq->hasHead()) {
       std::cout << "has head" << std::endl;
