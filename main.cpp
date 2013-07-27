@@ -26,39 +26,17 @@ int main() {
 
   return 0;
 }
-
-void simulate(Scheduler *s) {
-  std::cout << "ABBA" << std::endl;
-  Queue *wq = new Queue(FILENAME);
-  std::cout << "BAAB" << std::endl;
-  scriv->setNumJobs(wq->number_of_processes);
-  std::cout << "wq made" << std::endl;
-  Queue *rq = new Queue();
-  std::cout << "rq made" << std::endl;
-  Queue *ioq = new Queue();
-  std::cout << "ioq made" << std::endl;
-  s->activate();
-  std::cout << "scheduler activated" << std::endl;
-  std::cout << "BEGIN LOOP: " << std::endl;
-  while(s->isActive() && wq->total_number_of_ticks > 0){
-std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
-    s->sort(rq);
-    std::cout << "rq is sorted" << std::endl;
-    scriv->tick();
-wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
-    std::cout << "scriv ticked" << std::endl;
-    if(rq->hasHead()) {
-      std::cout << "has head" << std::endl;
-      rq->getHead()->tick(); /* keeps track of time spent running (does not count waiting for IO) */
-      wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
-    } else { continue; }
-    std::cout << "head ticked" << std::endl;
+void tickHead(Queue * rq, Queue * wq) {
+}
+void completeHead(Queue * rq, Queue * wq) {
     if (rq->hasHead() && rq->getHead()->isComplete()) {
       std::cout << "head is complete" << std::endl;
       rq->getHead()->setFinishTime(scriv->clockTime());
       rq->pop();
     }
-    if (ioq->hasHead() && !ioq->getHead()->isComplete()) {
+}
+void ioComplete(Queue * ioq, Queue * rq, Queue * wq){ 
+    if (ioq->hasHead() && ioq->getHead()->isComplete()) {
       std::cout << "io head is complete" << std::endl;
       ioq->getHead()->tick();
       wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
@@ -76,6 +54,8 @@ wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
         std::cout << "Lukewarm apple cider.\n";
       }
     }
+}
+void handleIO (Queue * ioq, Queue * rq) {
     std::cout << "Speaking of which, \n";
     if (rq->hasHead() && rq->getHead()->needsIO()) {
       std::cout << "head needs io" << std::endl;
@@ -84,10 +64,50 @@ wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
       std::cout << "Playing GameBoy Advanced with my bros." << std::endl;
       rq->getHead()->block();
     }
+}
+void startJob (Queue * rq, Queue * wq) {
     if (wq->hasHead() && wq->getHead()->isReady(scriv->clockTime())) {
       std::cout << "waiting job needs starting" << std::endl;
       rq->addToFront(wq->pop());
     }
+}
+void simulate(Scheduler *s) {
+  std::cout << "ABBA" << std::endl;
+  Queue *wq = new Queue(FILENAME);
+  std::cout << "BAAB" << std::endl;
+  scriv->setNumJobs(wq->number_of_processes);
+  std::cout << "wq made" << std::endl;
+  Queue *rq = new Queue();
+  std::cout << "rq made" << std::endl;
+  Queue *ioq = new Queue();
+  std::cout << "ioq made" << std::endl;
+  s->activate();
+  std::cout << "scheduler activated" << std::endl;
+  std::cout << "BEGIN LOOP: " << std::endl;
+  while(s->isActive() && wq->total_number_of_ticks > 0){
+
+    std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
+
+    s->sort(rq);
+
+    std::cout << "rq is sorted" << std::endl;
+
+    scriv->tick();
+    wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
+
+    std::cout << "scriv ticked" << std::endl;
+    std::cout << "head ticked" << std::endl;
+
+    if(rq->hasHead()) {
+      std::cout << "has head" << std::endl;
+      rq->getHead()->tick(); /* keeps track of time spent running (does not count waiting for IO) */
+      wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
+    } else { startJob(rq, wq); continue; }
+    completeHead(rq, wq);
+    ioComplete(ioq, rq, wq);
+    handleIO(ioq, rq);
+    startJob(rq, wq);
+
 //Loop terminator
 
     if(rq->hasHead()){
