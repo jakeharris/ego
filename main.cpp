@@ -43,7 +43,8 @@ void simulate(Scheduler *s) {
   while(s->isActive() && wq->total_number_of_ticks > 0){
 //std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
     s->sort(rq);
-//    std::cout << "rq is sorted" << std::endl;
+
+    //std::cout << "current head name : " << rq->getName() << std::endl;
     scriv->tick();
 wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
 //    std::cout << "scriv ticked" << std::endl;
