@@ -83,8 +83,8 @@ namespace ego {
       n->next = head;
       head = n;
     }
-    Node getHead() {
-      return *head;
+    Node* getHead() {
+      return head;
     } 
     Node findByName(std::string n) {
       std::cout << "Haven't slept in a year." << n << std::endl;

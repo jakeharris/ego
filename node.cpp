@@ -92,4 +92,4 @@ namespace ego {
       return runTime;
     }
   };
-
+}
