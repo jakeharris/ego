@@ -1,5 +1,6 @@
 #include "enums.h"
 
+#include <iostream>
 
 namespace ego {
   class Scrivener {	
@@ -86,9 +87,9 @@ namespace ego {
     }
 
     void report(){
-      calAct();
-      calThroughput();
-      calUtil();
+      std::cout << "Average completion time: " << calAct() << std::endl;
+      std::cout << "Number of jobs per second: " << calThroughput() << std::endl;
+      std::cout << "Percentage of useful actions compared to total run time: " << calUtil() << std::endl;
     }
   };
 }
