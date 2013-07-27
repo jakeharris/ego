@@ -36,13 +36,16 @@ void simulate(Scheduler *s) {
   std::cout << "scheduler activated" << std::endl;
   std::cout << "BEGIN LOOP: " << std::endl;
   while(s->isActive()){
+std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
     s->sort(rq);
     std::cout << "rq is sorted" << std::endl;
     scriv->tick();
+wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
     std::cout << "scriv ticked" << std::endl;
     if(rq->hasHead()) {
       std::cout << "has head" << std::endl;
       rq->getHead().tick(); /* keeps track of time spent running (does not count waiting for IO) */
+wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
     } else { continue; }
     std::cout << "head ticked" << std::endl;
     if (rq->hasHead() && rq->getHead().isComplete()) {
@@ -53,16 +56,18 @@ void simulate(Scheduler *s) {
     if (ioq->hasHead() && !ioq->getHead().isComplete()) {
       std::cout << "io head is complete" << std::endl;
       ioq->getHead().tick();
+wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
     }
     else {
       std::cout << "io head is not complete" << std::endl;
       std::cout << ioq->getHead().getName() << " Uh huh." << std::endl;
       std::string name = ioq->pop()->getName();
+wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
       if (ioq->hasHead()) {
-
         rq->findByName(name).unblock();
         std::cout << "Slightly larger kitties.\n";
         ioq->getHead().tick();
+wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
         std::cout << "Lukewarm apple cider.\n";
       }
     }
@@ -70,7 +75,7 @@ void simulate(Scheduler *s) {
     if (rq->hasHead() && rq->getHead().needsIO()) {
       std::cout << "head needs io" << std::endl;
       std::cout << "POW POW POW POW POW POW POW POW POW (LCD SOUNDSYSTEM)\n";
-      ioq->push(rq->getHead().getName());
+      ioq->push(rq->getHead());
       std::cout << "Playing GameBoy Advanced with my bros." << std::endl;
       rq->getHead().block();
     }

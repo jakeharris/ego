@@ -70,9 +70,9 @@ namespace ego {
     }
 
     void report(){
-      calAct();
-      calThroughput();
-      calUtil();
+//      calAct();
+//      calThroughput();
+//      calUtil();
     }
   };
 }
