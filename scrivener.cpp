@@ -37,7 +37,7 @@ namespace ego {
     }
 
     long double calThroughput() {//get info from node
-      throughput = (numJobs / runTime)/1000;//per second so divide time by 1k?
+      throughput = (numJobs / (runTime/1000);//per second so divide time by 1k?
       return throughput;
     }
 
