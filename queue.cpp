@@ -49,7 +49,7 @@ namespace ego {
     
     bool hasHead() {
 //      std::cout << "head: " << head << std::endl;
-      return head != NULL && std::strcmp(head->getName().c_str(), "H") != 0;
+      return (!(head)) && std::strcmp(head->getName().c_str(), "H") != 0;
     }
     
     void push(Node *n) {
