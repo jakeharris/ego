@@ -34,10 +34,6 @@ namespace ego {
         return clock2;
     }
 
-    void resetClock() {
-      runTime = 0;
-    }
-
     long double calAct() {
       act = runTime / numJobs;//get runtime from node
       return act;
