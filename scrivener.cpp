@@ -1,5 +1,6 @@
 #include "enums.h"
 
+#include <iostream>
 
 namespace ego {
   class Scrivener {	
@@ -9,6 +10,9 @@ namespace ego {
     long int runTime; //needs to reset before each queue uses it
     long int numJobs; //needs to reset before each queue uses it
     long int use; //time doing usefull stuff
+    long double act; //
+    long double throughput; //
+    long double util; //
     
     public:
     Scrivener() {
@@ -35,18 +39,18 @@ namespace ego {
     }
 
     long double calAct() {
-      long double act = runTime / numJobs;//get runtime from node
+      act = runTime / numJobs;//get runtime from node
       return act;
     }
 
     long double calThroughput() {//get info from node
-      long double throughput = (numJobs / (runTime/1000));//per second so divide time by 1k?
+      throughput = (numJobs / (runTime/1000));//per second so divide time by 1k?
       return throughput;
     }
 
     long int calUtil() {
       long double scale = 100.01;
-      long double util = (use / runTime) * scale; //display as percentage and round to nearest hundredth, figure out how to get use time. possibly count everytime it's pushed?
+      util = (use / runTime) * scale; //display as percentage and round to nearest hundredth, figure out how to get use time. possibly count everytime it's pushed?
       return util;
     }
 
@@ -81,9 +85,9 @@ namespace ego {
     }
 
     void report(){
-//      calAct();
-//      calThroughput();
-//      calUtil();
+      std::cout << "Average completion time: " << calAct() << std::endl;
+      std::cout << "Number of jobs per second: " << calThroughput() << std::endl;
+      std::cout << "Percentage of useful actions compared to total run time: " << calUtil() << std::endl;
     }
   };
 }
