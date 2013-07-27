@@ -12,9 +12,11 @@ namespace ego {
     Node *head;
     
     public:
+    int number_of_processes;
     int total_number_of_ticks;
     Queue () {
       head = new Node("H", 0, 0, 0);
+      number_of_processes;
       total_number_of_ticks = 0;
     }
     
@@ -35,6 +37,7 @@ namespace ego {
           std::vector<std::string> x = h.separate(line, ' ');
           Node *n = new Node(x[0], atol(x[1].c_str()), atol(x[2].c_str()), atol(x[3].c_str()));
 //std::cout << x[0] << ", " << atol(x[1].c_str()) << ", " << atol(x[2].c_str()) << ", " << atol(x[3].c_str()) << std::endl;
+          number_of_processes = number_of_processes + 1;
           total_number_of_ticks = total_number_of_ticks + atol(x[2].c_str());
           push(n);
         }

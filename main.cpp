@@ -27,6 +27,7 @@ int main() {
 
 void simulate(Scheduler *s) {
   wq = new Queue(FILENAME);
+  scriv->setNumJobs(wq->number_of_processes);
   std::cout << "wq made" << std::endl;
   rq = new Queue();
   std::cout << "rq made" << std::endl;
