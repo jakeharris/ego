@@ -21,6 +21,7 @@ namespace ego {
     }
     
     Queue (std::string filename) {
+      head = new Node("H", 0, 0, 0);
       /* Open 'filename' and add the trace elements to the list. */
       Helpers h;
       std::string line;
@@ -45,34 +46,37 @@ namespace ego {
       }
       else std::cout << "Unable to open file\n";
     }
+    
     bool hasHead() {
-      std::cout << "head: " << head << std::endl;
+//      std::cout << "head: " << head << std::endl;
       return head != NULL && std::strcmp(head->getName().c_str(), "H") != 0;
     }
+    
     void push(Node *n) {
-      if(head == NULL) {
+      if(!head) {
         head = n;
         return;
       }
       Node *current = head;
       while(current) {
-        if (current->next == NULL) {
+        if (!(current->next)) {
           current->next = n;
           return;
         }
         current = current->next;
       }
     }
+    
     Node* pop() {
       Node *tail = head;
-      if(tail->next == NULL) {
+      if(!(tail->next)) {
         head = NULL;
         return tail;
       }
       tail = tail->next;
       Node *newtail = head;
       while(tail) {
-        if(tail->next == NULL) {
+        if (!(tail->next)) {
           newtail->next = NULL;
           return tail;
         }
@@ -83,13 +87,16 @@ namespace ego {
       Node *err = new Node("error", 0, 0, 0);
       return err;
     }
+    
     void addToFront(Node * n) {
       n->next = head;
       head = n;
     }
+    
     Node* getHead() {
       return head;
     } 
+    
     Node findByName(std::string n) {
       std::cout << "Haven't slept in a year." << n << std::endl;
       Node current = *head;
@@ -102,6 +109,7 @@ namespace ego {
       }
       return current;
     }
+    
     void toString() {
       Node *current = head;
       std::cout << "QUEUE CONTENTS:" << std::endl;
