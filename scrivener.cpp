@@ -10,6 +10,7 @@ namespace ego {
     long int runTime; //needs to reset before each queue uses it
     long int numJobs; //needs to reset before each queue uses it
     long int use; //time doing usefull stuff
+    long int finishTime;
     long double act; //
     long double throughput; //
     long double util; //
@@ -35,35 +36,43 @@ namespace ego {
     }
 
     long double calAct() {
-      act = runTime / numJobs;//get runtime from node
+      act = finishTime / numJobs;
       return act;
     }
 
-    long double calThroughput() {//get info from node
-      throughput = (numJobs / (runTime/1000));//per second so divide time by 1k?
+    long double calThroughput() {
+      throughput = (numJobs / (runTime/1000));
       return throughput;
     }
 
     long int calUtil() {
       long double scale = 100.01;
-      util = (use / runTime) * scale; //display as percentage and round to nearest hundredth, figure out how to get use time. possibly count everytime it's pushed?
+      util = (use / runTime) * scale;
       return util;
     }
 
-    void iterJobs() { //iterates the job counter, call whenever a new job is added to the queue.
+    void iterJobs() { 
       numJobs++;
     }
 		
-    void tick() { //iterates the runtime counter
+    void tick() { 
       runTime++;
     }
 	
-    void usageTime() { //iterates the time the process is actually used.
+    void usageTime() { 
       use++;
     }
 
+    void nodeInfo(Node *n) {
+      finishTime = finishTime + n -> getFinishTime();
+      temp = n -> getProcessRunTime();
+
+      if(temp > max) max = temp;
+      if(temp < min) min = temp;       
+    }
+
     void setusageTime(long int x) {
-      use = x;
+      use = use + x;
     }
 
     void setNumJobs(long int x) {
@@ -82,7 +91,10 @@ namespace ego {
 
     void report(){
       std::cout << "Average completion time: " << calAct() << std::endl;
+      std::cout << "Maximum completion time: " << max << std::endl;
+      std::cout << "Minumun completion time: " << min << std::endl;
       std::cout << "Number of jobs per second: " << calThroughput() << std::endl;
+      std::cout << "Number of useful jobs per second: " << use << std::endl;
       std::cout << "Percentage of useful actions compared to total run time: " << calUtil() << std::endl;
     }
   };
