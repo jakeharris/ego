@@ -23,17 +23,16 @@ namespace ego {
     }
 
     void expsort(Queue *q) {
-        long int timesliceusage = 1;//get this somehow. i guess this needs to be done outside of whatever loop this is in
-        //if (q.newNode()){ or something similar //checks for new job
+        //if (q.newNode()){  //checks for new job does main do this?
         //  q.addToFront(newNode);
         //}
         Node *head = q -> pop();
         long int priority = head->getPriority();        
         long int timeSlice = (2^(priority - 1)) * 10;
-        if ((timesliceusage < (timeSlice / 2) && priority != 1)) {
+        if ((head -> getProcessRunTime() < (timeSlice / 2) && priority != 1)) {
           priority--;
         }
-        else if ((timesliceusage == timeSlice) && priority != 8) {
+        else if ((head -> getProcessRunTime() == timeSlice) && priority != 8) {
           priority++;
         }
         q->push(head);
