@@ -9,6 +9,9 @@ namespace ego {
     long int runTime; //needs to reset before each queue uses it
     long int numJobs; //needs to reset before each queue uses it
     long int use; //time doing usefull stuff
+    long int act; //
+    long int throughput; //
+    long int util; //
     
     public:
     Scrivener() {
@@ -83,9 +86,9 @@ namespace ego {
     }
 
     void report(){
-//      calAct();
-//      calThroughput();
-//      calUtil();
+      calAct();
+      calThroughput();
+      calUtil();
     }
   };
 }
