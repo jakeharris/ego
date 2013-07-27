@@ -1,5 +1,5 @@
 #include "helpers.cpp"
-#include "node.cpp"
+#include "node.h"
 
 #include <iostream>
 #include <fstream>
