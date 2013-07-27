@@ -22,9 +22,7 @@ namespace ego {
     }
 
     long int clockTime() {
-      clock = 0;
-      clock2 = 0;
-      if (alg == ego::EXPONENTIAL) {
+    if (alg == ego::EXPONENTIAL) {
         clock = runTime;
         return clock;
     }
