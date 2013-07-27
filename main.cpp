@@ -26,15 +26,19 @@ int main() {
 
   return 0;
 }
+
 void tickHead(Queue * rq, Queue * wq) {
 }
+
 void completeHead(Queue * rq, Queue * wq) {
     if (rq->hasHead() && rq->getHead()->isComplete()) {
       std::cout << "head is complete" << std::endl;
       rq->getHead()->setFinishTime(scriv->clockTime());
+      scriv->nodeInfo(rq->getHead());
       rq->pop();
     }
 }
+
 void ioComplete(Queue * ioq, Queue * rq, Queue * wq){ 
     if (ioq->hasHead() && ioq->getHead()->isComplete()) {
       std::cout << "io head is complete" << std::endl;
@@ -55,6 +59,7 @@ void ioComplete(Queue * ioq, Queue * rq, Queue * wq){
       }
     }
 }
+
 void handleIO (Queue * ioq, Queue * rq) {
     std::cout << "Speaking of which, \n";
     if (rq->hasHead() && rq->getHead()->needsIO()) {
@@ -65,12 +70,14 @@ void handleIO (Queue * ioq, Queue * rq) {
       rq->getHead()->block();
     }
 }
+
 void startJob (Queue * rq, Queue * wq) {
     if (wq->hasHead() && wq->getHead()->isReady(scriv->clockTime())) {
       std::cout << "waiting job needs starting" << std::endl;
       rq->addToFront(wq->pop());
     }
 }
+
 void simulate(Scheduler *s) {
   std::cout << "ABBA" << std::endl;
   Queue *wq = new Queue(FILENAME);
@@ -86,7 +93,7 @@ void simulate(Scheduler *s) {
   std::cout << "BEGIN LOOP: " << std::endl;
   while(s->isActive() && wq->total_number_of_ticks > 0){
 
-//    std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
+    std::cout << wq->total_number_of_ticks << " TICKS REMAINING\n";
 
     s->sort(rq);
 
