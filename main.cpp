@@ -83,5 +83,14 @@ wq->total_number_of_ticks = wq->total_number_of_ticks - 1;
       std::cout << "waiting job needs starting" << std::endl;
       rq->addToFront(wq->pop());
     }
+//Loop terminator
+/*
+    if(rq->hasHead()){
+      Node temp = rq->getHead();
+      if((temp.getProcessRunTime() - temp.getExpectedRunTime()) == 0){
+        s->deactivate();
+      }
+    }
+*/
   }
 } 

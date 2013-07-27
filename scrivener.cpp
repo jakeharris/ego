@@ -8,10 +8,10 @@ namespace ego {
     long int clock2; //for lackof a better name, clock of alg 2
     long int runTime; //needs to reset before each queue uses it
     long int numJobs; //needs to reset before each queue uses it
-    long double act; //Average Completion Time
-    long double throughput; //Jobs per second
-    long double util; //utilization
     long int use; //time doing usefull stuff
+    long int act; //
+    long int throughput; //
+    long int util; //
     
     public:
     Scrivener() {
@@ -25,25 +25,33 @@ namespace ego {
     }
 
     long int clockTime() {
+      clock = 0;
+      clock2 = 0;
       if (alg == ego::EXPONENTIAL) {
+        clock = runTime;
         return clock;
     }
+        clock2 = runTime;
         return clock2;
     }
 
+    void resetClock() {
+      runTime = 0;
+    }
+
     long double calAct() {
-      act = runTime / numJobs;//get runtime from node
+      long double act = runTime / numJobs;//get runtime from node
       return act;
     }
 
     long double calThroughput() {//get info from node
-      throughput = (numJobs / (runTime/1000));//per second so divide time by 1k?
+      long double throughput = (numJobs / (runTime/1000));//per second so divide time by 1k?
       return throughput;
     }
 
     long int calUtil() {
       long double scale = 100.01;
-      util = (use / runTime) * scale; //display as percentage and round to nearest hundredth, figure out how to get use time. possibly count everytime it's pushed?
+      long double util = (use / runTime) * scale; //display as percentage and round to nearest hundredth, figure out how to get use time. possibly count everytime it's pushed?
       return util;
     }
 
@@ -59,6 +67,14 @@ namespace ego {
       use++;
     }
 
+    void setusageTime(long int x) {
+      use = x;
+    }
+
+    void setNumJobs(long int x) {
+      numJobs = x;
+    }
+
     void initialize() {
       clock = 0;
       clock2 = 0;
@@ -70,9 +86,9 @@ namespace ego {
     }
 
     void report(){
-//      calAct();
-//      calThroughput();
-//      calUtil();
+      calAct();
+      calThroughput();
+      calUtil();
     }
   };
 }
