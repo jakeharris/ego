@@ -11,6 +11,8 @@ namespace ego {
     long int numJobs; //needs to reset before each queue uses it
     long int use; //time doing usefull stuff
     long int finishTime;
+    long int max;
+    long int min;
     long double act; //
     long double throughput; //
     long double util; //
